@@ -1,8 +1,6 @@
 # kebab-proto
 
-Kebab の **public API contract** を管理する repository です。
-
-Account / Authentication の private implementation proto とは分離し、他サービスが User identity 解決と token reissue に利用する最小 contract のみを公開します。
+Kebab の public API contract を管理する repository です。
 
 ## Package
 
@@ -10,38 +8,28 @@ Account / Authentication の private implementation proto とは分離し、他�
 party.kanade.kebab.v1
 ```
 
-## Public Resources / RPC
+## Resources
 
-| Resource | RPC | 備考 |
-|---|---|---|
-| `User` | `GetUser` | RBAC identifier 解決用 |
-| — | `RefreshSession` | access token reissue（kebab 既存 RPC 名を維持） |
+| Resource | RPC |
+|---|---|
+| `User` | `GetUser` |
+| — | `RefreshSession` |
 
-## Public User に含める field
+## User fields
 
 * `id`
 * `display_name`
 * `image_url`
 
-## Public に含めないもの
+## ドキュメント
 
-* `Identity`
-* `PasskeyCredential`
-* Firebase / Passkey 登録・認証 RPC
-* OAuth authorize / token exchange の内部 detail
-* private account metadata
+`PROTO.md` は `mise run generate` で生成します。
 
-## kebab 実装との対応
-
-| public contract | kebab private (`kebab.auth.v1`) |
-|---|---|
-| `GetUser` | `AuthenticationService.GetUser` |
-| `RefreshSession` | `AuthenticationService.RefreshSession` |
-
-public contract 側で authentication semantics を変更しません。
-
-## Lint
+## 開発
 
 ```bash
 mise run lint
+mise run generate
+mise run breaking
+mise run check
 ```

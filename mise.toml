@@ -1,8 +1,23 @@
 [tools]
 buf = "1.72.0"
+"go:github.com/pseudomuto/protoc-gen-doc/cmd/protoc-gen-doc" = "1.5.1"
+
+[tasks.generate]
+description = "protoc-gen-doc でドキュメントを生成する"
+run = ["buf generate"]
+
+[tasks.docs]
+description = "generate のエイリアス"
+run = ["mise run generate"]
 
 [tasks.lint]
+description = "buf lint を実行する"
 run = ["buf lint"]
 
 [tasks.breaking]
+description = "breaking change をチェックする"
 run = ["buf breaking --against .git#branch=main"]
+
+[tasks.check]
+description = "lint, generate, breaking を実行する"
+run = ["mise run lint", "mise run generate", "mise run breaking"]

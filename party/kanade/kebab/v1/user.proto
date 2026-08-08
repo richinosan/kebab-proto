@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package party.kanade.kebab.v1;
 
-// User は他サービスが identity 解決に利用する最小限の User 表現。
+// User は公開 User 表現。
 message User {
   string id = 1;
   string display_name = 2;

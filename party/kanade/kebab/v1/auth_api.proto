@@ -14,7 +14,6 @@ message GetUserResponse {
 }
 
 // RefreshSessionRequest は access token 期限切れ時の token 再発行（reissue）に利用する。
-// kebab 実装では `AuthenticationService.RefreshSession` に対応する。
 message RefreshSessionRequest {
   string refresh_token = 1;
   string client_id = 2;

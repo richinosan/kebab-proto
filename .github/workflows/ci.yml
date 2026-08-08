@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  buf:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: jdx/mise-action@v4
+
+      - name: buf lint
+        run: mise run lint
+
+      - name: buf generate
+        run: mise run generate
+
+      - name: Check generated docs are up to date
+        run: |
+          if ! git diff --exit-code PROTO.md; then
+            echo "PROTO.md is out of date. Run mise run generate and commit."
+            exit 1
+          fi
+
+      - name: buf breaking
+        run: |
+          if git ls-tree -r --name-only origin/main | grep -q '\.proto$'; then
+            mise run breaking
+          else
+            echo "Skipping buf breaking: main has no .proto files yet"
+          fi

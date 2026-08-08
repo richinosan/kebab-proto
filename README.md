@@ -23,13 +23,13 @@ kebab.auth.v1
 
 ## ドキュメント
 
-`kebab/auth/v1/README.md` を `mise run generate` で生成します。
+`authapis/README.md` を `mise run docs` で生成します。
 
 ## 開発
 
 ```bash
 mise run lint
-mise run generate
+mise run docs
 mise run breaking
 mise run check
 ```

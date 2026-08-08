@@ -12,6 +12,8 @@
     - [GetUserResponse](#auth-v1-GetUserResponse)
     - [RefreshSessionRequest](#auth-v1-RefreshSessionRequest)
     - [RefreshSessionResponse](#auth-v1-RefreshSessionResponse)
+    - [RevokeSessionRequest](#auth-v1-RevokeSessionRequest)
+    - [RevokeSessionResponse](#auth-v1-RevokeSessionResponse)
   
 - [auth/v1/api.proto](#auth_v1_api-proto)
     - [AuthenticationService](#auth-v1-AuthenticationService)
@@ -139,6 +141,31 @@ RefreshSessionRequest は Refresh Token を更新する。
 
 
 
+
+<a name="auth-v1-RevokeSessionRequest"></a>
+
+### RevokeSessionRequest
+RevokeSessionRequest はセッションを失効する。
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| refresh_token | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="auth-v1-RevokeSessionResponse"></a>
+
+### RevokeSessionResponse
+
+
+
+
+
+
  
 
  
@@ -171,6 +198,7 @@ AuthenticationService は認証 API を提供する。
 | ----------- | ------------ | ------------- | ------------|
 | GetUser | [GetUserRequest](#auth-v1-GetUserRequest) | [GetUserResponse](#auth-v1-GetUserResponse) |  |
 | RefreshSession | [RefreshSessionRequest](#auth-v1-RefreshSessionRequest) | [RefreshSessionResponse](#auth-v1-RefreshSessionResponse) |  |
+| RevokeSession | [RevokeSessionRequest](#auth-v1-RevokeSessionRequest) | [RevokeSessionResponse](#auth-v1-RevokeSessionResponse) |  |
 
  
 

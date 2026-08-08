@@ -1,0 +1,15 @@
+version: v2
+modules:
+  - path: .
+    name: buf.build/richinosan/kebab-public
+lint:
+  use:
+    - STANDARD
+  except:
+    - RPC_RESPONSE_STANDARD_NAME
+    - RPC_REQUEST_RESPONSE_UNIQUE
+    - RPC_REQUEST_STANDARD_NAME
+  disallow_comment_ignores: true
+breaking:
+  use:
+    - FILE

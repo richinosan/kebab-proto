@@ -31,6 +31,7 @@ jobs:
 
       - name: buf breaking
         run: |
+          git fetch origin main
           if git ls-tree -r --name-only origin/main | grep -q '\.proto$'; then
             mise run breaking
           else

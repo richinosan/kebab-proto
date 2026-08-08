@@ -19,7 +19,7 @@ run = ["buf lint"]
 
 [tasks.breaking]
 description = "breaking change をチェックする"
-run = ["buf breaking --against .git#branch=main"]
+run = ["buf breaking --against '.git#ref=origin/main'"]
 
 [tasks.check]
 description = "lint, generate, breaking を実行する"

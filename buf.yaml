@@ -1,6 +1,6 @@
 version: v2
 modules:
-  - path: authapis
+  - path: auth
 lint:
   use:
     - STANDARD

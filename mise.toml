@@ -1,3 +1,8 @@
 [tools]
 buf = "1.72.0"
-"go:github.com/pseudomuto/protoc-gen-doc/cmd/protoc-gen-doc" = "1.5.1"
+
+[tasks.lint]
+run = ["buf lint"]
+
+[tasks.breaking]
+run = ["buf breaking --against .git#branch=main"]

@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package party.kanade.kebab.v1;
+
+import "party/kanade/kebab/v1/user.proto";
+
+// GetUserRequest は users/{user_id} 形式で User を取得する。
+message GetUserRequest {
+  string name = 1;
+}
+
+message GetUserResponse {
+  User user = 1;
+}
+
+// RefreshSessionRequest は access token 期限切れ時の token 再発行（reissue）に利用する。
+// kebab 実装では `AuthenticationService.RefreshSession` に対応する。
+message RefreshSessionRequest {
+  string refresh_token = 1;
+  string client_id = 2;
+}
+
+message RefreshSessionResponse {
+  string access_token = 1;
+  string refresh_token = 2;
+  int64 expires_in = 3;
+  string token_type = 4;
+}
+
+// PublicAuthenticationService は他サービス向けの最小認証 contract。
+service PublicAuthenticationService {
+  rpc GetUser(GetUserRequest) returns (GetUserResponse);
+  rpc RefreshSession(RefreshSessionRequest) returns (RefreshSessionResponse);
+}

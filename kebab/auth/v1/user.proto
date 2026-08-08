@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package auth.public.v1;
+package kebab.auth.v1;
 
 // User は公開 User 表現。
 message User {

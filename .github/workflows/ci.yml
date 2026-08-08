@@ -1,6 +1,6 @@
       - name: Check generated docs are up to date
         run: |
-          if ! git diff --exit-code auth/public/v1/README.md; then
+          if ! git diff --exit-code kebab/auth/v1/README.md; then
             echo "Generated docs are out of date. Run mise run generate and commit."
             exit 1
           fi

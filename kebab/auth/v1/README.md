@@ -3,29 +3,29 @@
 
 ## Table of Contents
 
-- [auth/public/v1/user.proto](#auth_public_v1_user-proto)
-    - [User](#auth-public-v1-User)
+- [kebab/auth/v1/user.proto](#kebab_auth_v1_user-proto)
+    - [User](#kebab-auth-v1-User)
   
-- [auth/public/v1/auth_api.proto](#auth_public_v1_auth_api-proto)
-    - [GetUserRequest](#auth-public-v1-GetUserRequest)
-    - [GetUserResponse](#auth-public-v1-GetUserResponse)
-    - [RefreshSessionRequest](#auth-public-v1-RefreshSessionRequest)
-    - [RefreshSessionResponse](#auth-public-v1-RefreshSessionResponse)
+- [kebab/auth/v1/auth_api.proto](#kebab_auth_v1_auth_api-proto)
+    - [GetUserRequest](#kebab-auth-v1-GetUserRequest)
+    - [GetUserResponse](#kebab-auth-v1-GetUserResponse)
+    - [RefreshSessionRequest](#kebab-auth-v1-RefreshSessionRequest)
+    - [RefreshSessionResponse](#kebab-auth-v1-RefreshSessionResponse)
   
-    - [PublicAuthenticationService](#auth-public-v1-PublicAuthenticationService)
+    - [PublicAuthenticationService](#kebab-auth-v1-PublicAuthenticationService)
   
 - [Scalar Value Types](#scalar-value-types)
 
 
 
-<a name="auth_public_v1_user-proto"></a>
+<a name="kebab_auth_v1_user-proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
-## auth/public/v1/user.proto
+## kebab/auth/v1/user.proto
 
 
 
-<a name="auth-public-v1-User"></a>
+<a name="kebab-auth-v1-User"></a>
 
 ### User
 User は公開 User 表現。
@@ -51,14 +51,14 @@ User は公開 User 表現。
 
 
 
-<a name="auth_public_v1_auth_api-proto"></a>
+<a name="kebab_auth_v1_auth_api-proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
-## auth/public/v1/auth_api.proto
+## kebab/auth/v1/auth_api.proto
 
 
 
-<a name="auth-public-v1-GetUserRequest"></a>
+<a name="kebab-auth-v1-GetUserRequest"></a>
 
 ### GetUserRequest
 GetUserRequest は users/{user_id} 形式で User を取得する。
@@ -73,7 +73,7 @@ GetUserRequest は users/{user_id} 形式で User を取得する。
 
 
 
-<a name="auth-public-v1-GetUserResponse"></a>
+<a name="kebab-auth-v1-GetUserResponse"></a>
 
 ### GetUserResponse
 
@@ -81,14 +81,14 @@ GetUserRequest は users/{user_id} 形式で User を取得する。
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| user | [User](#auth-public-v1-User) |  |  |
+| user | [User](#kebab-auth-v1-User) |  |  |
 
 
 
 
 
 
-<a name="auth-public-v1-RefreshSessionRequest"></a>
+<a name="kebab-auth-v1-RefreshSessionRequest"></a>
 
 ### RefreshSessionRequest
 RefreshSessionRequest は access token 期限切れ時の token 再発行（reissue）に利用する。
@@ -104,7 +104,7 @@ RefreshSessionRequest は access token 期限切れ時の token 再発行（reis
 
 
 
-<a name="auth-public-v1-RefreshSessionResponse"></a>
+<a name="kebab-auth-v1-RefreshSessionResponse"></a>
 
 ### RefreshSessionResponse
 
@@ -128,15 +128,15 @@ RefreshSessionRequest は access token 期限切れ時の token 再発行（reis
  
 
 
-<a name="auth-public-v1-PublicAuthenticationService"></a>
+<a name="kebab-auth-v1-PublicAuthenticationService"></a>
 
 ### PublicAuthenticationService
 PublicAuthenticationService は公開認証 API。
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| GetUser | [GetUserRequest](#auth-public-v1-GetUserRequest) | [GetUserResponse](#auth-public-v1-GetUserResponse) |  |
-| RefreshSession | [RefreshSessionRequest](#auth-public-v1-RefreshSessionRequest) | [RefreshSessionResponse](#auth-public-v1-RefreshSessionResponse) |  |
+| GetUser | [GetUserRequest](#kebab-auth-v1-GetUserRequest) | [GetUserResponse](#kebab-auth-v1-GetUserResponse) |  |
+| RefreshSession | [RefreshSessionRequest](#kebab-auth-v1-RefreshSessionRequest) | [RefreshSessionResponse](#kebab-auth-v1-RefreshSessionResponse) |  |
 
  
 

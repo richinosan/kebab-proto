@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-package auth.public.v1;
+package kebab.auth.v1;
 
-import "auth/public/v1/user.proto";
+import "kebab/auth/v1/user.proto";
 
 // GetUserRequest は users/{user_id} 形式で User を取得する。
 message GetUserRequest {

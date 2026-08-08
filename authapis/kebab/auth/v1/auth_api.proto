@@ -13,21 +13,12 @@ message GetUserResponse {
   User user = 1;
 }
 
-// RefreshSessionRequest は access token 期限切れ時の token 再発行（reissue）に利用する。
+// RefreshSessionRequest は Refresh Token を更新する。
 message RefreshSessionRequest {
   string refresh_token = 1;
   string client_id = 2;
 }
 
 message RefreshSessionResponse {
-  string access_token = 1;
-  string refresh_token = 2;
-  int64 expires_in = 3;
-  string token_type = 4;
-}
-
-// PublicAuthenticationService は公開認証 API。
-service PublicAuthenticationService {
-  rpc GetUser(GetUserRequest) returns (GetUserResponse);
-  rpc RefreshSession(RefreshSessionRequest) returns (RefreshSessionResponse);
+  SessionTokens tokens = 1;
 }

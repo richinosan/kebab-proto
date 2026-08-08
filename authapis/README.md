@@ -4,6 +4,7 @@
 ## Table of Contents
 
 - [kebab/auth/v1/user.proto](#kebab_auth_v1_user-proto)
+    - [SessionTokens](#kebab-auth-v1-SessionTokens)
     - [User](#kebab-auth-v1-User)
   
 - [kebab/auth/v1/auth_api.proto](#kebab_auth_v1_auth_api-proto)
@@ -12,7 +13,8 @@
     - [RefreshSessionRequest](#kebab-auth-v1-RefreshSessionRequest)
     - [RefreshSessionResponse](#kebab-auth-v1-RefreshSessionResponse)
   
-    - [PublicAuthenticationService](#kebab-auth-v1-PublicAuthenticationService)
+- [kebab/auth/v1/api.proto](#kebab_auth_v1_api-proto)
+    - [AuthenticationService](#kebab-auth-v1-AuthenticationService)
   
 - [Scalar Value Types](#scalar-value-types)
 
@@ -25,10 +27,29 @@
 
 
 
+<a name="kebab-auth-v1-SessionTokens"></a>
+
+### SessionTokens
+SessionTokens は token 再発行結果。
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| access_token | [string](#string) |  |  |
+| refresh_token | [string](#string) |  |  |
+| id_token | [string](#string) |  |  |
+| expires_in | [int64](#int64) |  |  |
+| token_type | [string](#string) |  |  |
+
+
+
+
+
+
 <a name="kebab-auth-v1-User"></a>
 
 ### User
-User は公開 User 表現。
+User は User リソースの公開表現。
 
 
 | Field | Type | Label | Description |
@@ -91,7 +112,7 @@ GetUserRequest は users/{user_id} 形式で User を取得する。
 <a name="kebab-auth-v1-RefreshSessionRequest"></a>
 
 ### RefreshSessionRequest
-RefreshSessionRequest は access token 期限切れ時の token 再発行（reissue）に利用する。
+RefreshSessionRequest は Refresh Token を更新する。
 
 
 | Field | Type | Label | Description |
@@ -112,10 +133,7 @@ RefreshSessionRequest は access token 期限切れ時の token 再発行（reis
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| access_token | [string](#string) |  |  |
-| refresh_token | [string](#string) |  |  |
-| expires_in | [int64](#int64) |  |  |
-| token_type | [string](#string) |  |  |
+| tokens | [SessionTokens](#kebab-auth-v1-SessionTokens) |  |  |
 
 
 
@@ -127,11 +145,27 @@ RefreshSessionRequest は access token 期限切れ時の token 再発行（reis
 
  
 
+ 
 
-<a name="kebab-auth-v1-PublicAuthenticationService"></a>
 
-### PublicAuthenticationService
-PublicAuthenticationService は公開認証 API。
+
+<a name="kebab_auth_v1_api-proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## kebab/auth/v1/api.proto
+
+
+ 
+
+ 
+
+ 
+
+
+<a name="kebab-auth-v1-AuthenticationService"></a>
+
+### AuthenticationService
+AuthenticationService は認証 API を提供する。
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|

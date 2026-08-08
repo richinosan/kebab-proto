@@ -2,6 +2,8 @@
 
 Kebab の public API contract を管理する repository です。
 
+ConnectRPC の URL は private 実装と同一です（例: `/kebab.auth.v1.AuthenticationService/GetUser`）。
+
 ## Package
 
 ```text

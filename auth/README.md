@@ -3,31 +3,31 @@
 
 ## Table of Contents
 
-- [kebab/auth/v1/user.proto](#kebab_auth_v1_user-proto)
-    - [SessionTokens](#kebab-auth-v1-SessionTokens)
-    - [User](#kebab-auth-v1-User)
+- [auth/v1/user.proto](#auth_v1_user-proto)
+    - [SessionTokens](#auth-v1-SessionTokens)
+    - [User](#auth-v1-User)
   
-- [kebab/auth/v1/auth_api.proto](#kebab_auth_v1_auth_api-proto)
-    - [GetUserRequest](#kebab-auth-v1-GetUserRequest)
-    - [GetUserResponse](#kebab-auth-v1-GetUserResponse)
-    - [RefreshSessionRequest](#kebab-auth-v1-RefreshSessionRequest)
-    - [RefreshSessionResponse](#kebab-auth-v1-RefreshSessionResponse)
+- [auth/v1/auth_api.proto](#auth_v1_auth_api-proto)
+    - [GetUserRequest](#auth-v1-GetUserRequest)
+    - [GetUserResponse](#auth-v1-GetUserResponse)
+    - [RefreshSessionRequest](#auth-v1-RefreshSessionRequest)
+    - [RefreshSessionResponse](#auth-v1-RefreshSessionResponse)
   
-- [kebab/auth/v1/api.proto](#kebab_auth_v1_api-proto)
-    - [AuthenticationService](#kebab-auth-v1-AuthenticationService)
+- [auth/v1/api.proto](#auth_v1_api-proto)
+    - [AuthenticationService](#auth-v1-AuthenticationService)
   
 - [Scalar Value Types](#scalar-value-types)
 
 
 
-<a name="kebab_auth_v1_user-proto"></a>
+<a name="auth_v1_user-proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
-## kebab/auth/v1/user.proto
+## auth/v1/user.proto
 
 
 
-<a name="kebab-auth-v1-SessionTokens"></a>
+<a name="auth-v1-SessionTokens"></a>
 
 ### SessionTokens
 SessionTokens は token 再発行結果。
@@ -46,7 +46,7 @@ SessionTokens は token 再発行結果。
 
 
 
-<a name="kebab-auth-v1-User"></a>
+<a name="auth-v1-User"></a>
 
 ### User
 User は User リソースの公開表現。
@@ -72,14 +72,14 @@ User は User リソースの公開表現。
 
 
 
-<a name="kebab_auth_v1_auth_api-proto"></a>
+<a name="auth_v1_auth_api-proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
-## kebab/auth/v1/auth_api.proto
+## auth/v1/auth_api.proto
 
 
 
-<a name="kebab-auth-v1-GetUserRequest"></a>
+<a name="auth-v1-GetUserRequest"></a>
 
 ### GetUserRequest
 GetUserRequest は users/{user_id} 形式で User を取得する。
@@ -94,7 +94,7 @@ GetUserRequest は users/{user_id} 形式で User を取得する。
 
 
 
-<a name="kebab-auth-v1-GetUserResponse"></a>
+<a name="auth-v1-GetUserResponse"></a>
 
 ### GetUserResponse
 
@@ -102,14 +102,14 @@ GetUserRequest は users/{user_id} 形式で User を取得する。
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| user | [User](#kebab-auth-v1-User) |  |  |
+| user | [User](#auth-v1-User) |  |  |
 
 
 
 
 
 
-<a name="kebab-auth-v1-RefreshSessionRequest"></a>
+<a name="auth-v1-RefreshSessionRequest"></a>
 
 ### RefreshSessionRequest
 RefreshSessionRequest は Refresh Token を更新する。
@@ -125,7 +125,7 @@ RefreshSessionRequest は Refresh Token を更新する。
 
 
 
-<a name="kebab-auth-v1-RefreshSessionResponse"></a>
+<a name="auth-v1-RefreshSessionResponse"></a>
 
 ### RefreshSessionResponse
 
@@ -133,7 +133,7 @@ RefreshSessionRequest は Refresh Token を更新する。
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| tokens | [SessionTokens](#kebab-auth-v1-SessionTokens) |  |  |
+| tokens | [SessionTokens](#auth-v1-SessionTokens) |  |  |
 
 
 
@@ -149,10 +149,10 @@ RefreshSessionRequest は Refresh Token を更新する。
 
 
 
-<a name="kebab_auth_v1_api-proto"></a>
+<a name="auth_v1_api-proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
-## kebab/auth/v1/api.proto
+## auth/v1/api.proto
 
 
  
@@ -162,15 +162,15 @@ RefreshSessionRequest は Refresh Token を更新する。
  
 
 
-<a name="kebab-auth-v1-AuthenticationService"></a>
+<a name="auth-v1-AuthenticationService"></a>
 
 ### AuthenticationService
 AuthenticationService は認証 API を提供する。
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| GetUser | [GetUserRequest](#kebab-auth-v1-GetUserRequest) | [GetUserResponse](#kebab-auth-v1-GetUserResponse) |  |
-| RefreshSession | [RefreshSessionRequest](#kebab-auth-v1-RefreshSessionRequest) | [RefreshSessionResponse](#kebab-auth-v1-RefreshSessionResponse) |  |
+| GetUser | [GetUserRequest](#auth-v1-GetUserRequest) | [GetUserResponse](#auth-v1-GetUserResponse) |  |
+| RefreshSession | [RefreshSessionRequest](#auth-v1-RefreshSessionRequest) | [RefreshSessionResponse](#auth-v1-RefreshSessionResponse) |  |
 
  
 

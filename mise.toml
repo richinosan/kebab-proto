@@ -3,7 +3,7 @@ buf = "1.72.0"
 "go:github.com/pseudomuto/protoc-gen-doc/cmd/protoc-gen-doc" = "1.5.1"
 
 [env]
-services = "authapis"
+services = "auth"
 
 [tasks.docs]
 description = "ドキュメントを生成する"

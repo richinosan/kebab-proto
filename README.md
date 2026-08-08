@@ -2,30 +2,25 @@
 
 Kebab の public API contract を管理する repository です。
 
-ConnectRPC の URL は private 実装と同一です（例: `/kebab.auth.v1.AuthenticationService/GetUser`）。
+ConnectRPC の URL は private 実装と同一です（例: `/auth.v1.AuthenticationService/GetUser`）。
 
 ## Package
 
 ```text
-kebab.auth.v1
+auth.v1
 ```
 
-## Resources
+## Layout
 
-| Resource | RPC |
-|---|---|
-| `User` | `GetUser` |
-| — | `RefreshSession` |
-
-## User fields
-
-* `id`
-* `display_name`
-* `image_url`
+```text
+auth/
+  buf.gen.yaml
+  auth/v1/*.proto
+```
 
 ## ドキュメント
 
-`authapis/README.md` を `mise run docs` で生成します。
+`auth/README.md` を `mise run docs` で生成します。
 
 ## 開発
 

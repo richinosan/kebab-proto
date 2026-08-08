@@ -1,5 +1,5 @@
 version: v2
 plugins:
   - local: protoc-gen-doc
-    out: kebab/auth/v1
+    out: .
     opt: markdown,README.md

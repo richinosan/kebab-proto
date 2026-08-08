@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package auth.v1;
+
+import "auth/v1/auth_api.proto";
+
+// AuthenticationService は認証 API を提供する。
+service AuthenticationService {
+  rpc GetUser(GetUserRequest) returns (GetUserResponse);
+  rpc RefreshSession(RefreshSessionRequest) returns (RefreshSessionResponse);
+}

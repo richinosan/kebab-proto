@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package auth.v1;
+
+import "auth/v1/user.proto";
+
+// GetUserRequest は users/{user_id} 形式で User を取得する。
+message GetUserRequest {
+  string name = 1;
+}
+
+message GetUserResponse {
+  User user = 1;
+}
+
+// RefreshSessionRequest は Refresh Token を更新する。
+message RefreshSessionRequest {
+  string refresh_token = 1;
+  string client_id = 2;
+}
+
+message RefreshSessionResponse {
+  SessionTokens tokens = 1;
+}

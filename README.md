@@ -5,7 +5,7 @@ Kebab の public API contract を管理する repository です。
 ## Package
 
 ```text
-kebab.v1
+auth.public.v1
 ```
 
 ## Resources
@@ -23,7 +23,7 @@ kebab.v1
 
 ## ドキュメント
 
-`PROTO.md` は `mise run generate` で生成します。
+`auth/public/v1/README.md` を `mise run generate` で生成します。
 
 ## 開発
 

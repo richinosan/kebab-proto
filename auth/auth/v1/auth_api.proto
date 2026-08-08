@@ -22,3 +22,10 @@ message RefreshSessionRequest {
 message RefreshSessionResponse {
   SessionTokens tokens = 1;
 }
+
+// RevokeSessionRequest はセッションを失効する。
+message RevokeSessionRequest {
+  string refresh_token = 1;
+}
+
+message RevokeSessionResponse {}

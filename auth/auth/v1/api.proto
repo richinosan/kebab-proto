@@ -8,4 +8,5 @@ import "auth/v1/auth_api.proto";
 service AuthenticationService {
   rpc GetUser(GetUserRequest) returns (GetUserResponse);
   rpc RefreshSession(RefreshSessionRequest) returns (RefreshSessionResponse);
+  rpc RevokeSession(RevokeSessionRequest) returns (RevokeSessionResponse);
 }

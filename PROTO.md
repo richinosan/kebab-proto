@@ -3,29 +3,29 @@
 
 ## Table of Contents
 
-- [party/kanade/kebab/v1/user.proto](#party_kanade_kebab_v1_user-proto)
-    - [User](#party-kanade-kebab-v1-User)
+- [kebab/v1/user.proto](#kebab_v1_user-proto)
+    - [User](#kebab-v1-User)
   
-- [party/kanade/kebab/v1/auth_api.proto](#party_kanade_kebab_v1_auth_api-proto)
-    - [GetUserRequest](#party-kanade-kebab-v1-GetUserRequest)
-    - [GetUserResponse](#party-kanade-kebab-v1-GetUserResponse)
-    - [RefreshSessionRequest](#party-kanade-kebab-v1-RefreshSessionRequest)
-    - [RefreshSessionResponse](#party-kanade-kebab-v1-RefreshSessionResponse)
+- [kebab/v1/auth_api.proto](#kebab_v1_auth_api-proto)
+    - [GetUserRequest](#kebab-v1-GetUserRequest)
+    - [GetUserResponse](#kebab-v1-GetUserResponse)
+    - [RefreshSessionRequest](#kebab-v1-RefreshSessionRequest)
+    - [RefreshSessionResponse](#kebab-v1-RefreshSessionResponse)
   
-    - [PublicAuthenticationService](#party-kanade-kebab-v1-PublicAuthenticationService)
+    - [PublicAuthenticationService](#kebab-v1-PublicAuthenticationService)
   
 - [Scalar Value Types](#scalar-value-types)
 
 
 
-<a name="party_kanade_kebab_v1_user-proto"></a>
+<a name="kebab_v1_user-proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
-## party/kanade/kebab/v1/user.proto
+## kebab/v1/user.proto
 
 
 
-<a name="party-kanade-kebab-v1-User"></a>
+<a name="kebab-v1-User"></a>
 
 ### User
 User は公開 User 表現。
@@ -51,14 +51,14 @@ User は公開 User 表現。
 
 
 
-<a name="party_kanade_kebab_v1_auth_api-proto"></a>
+<a name="kebab_v1_auth_api-proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
-## party/kanade/kebab/v1/auth_api.proto
+## kebab/v1/auth_api.proto
 
 
 
-<a name="party-kanade-kebab-v1-GetUserRequest"></a>
+<a name="kebab-v1-GetUserRequest"></a>
 
 ### GetUserRequest
 GetUserRequest は users/{user_id} 形式で User を取得する。
@@ -73,7 +73,7 @@ GetUserRequest は users/{user_id} 形式で User を取得する。
 
 
 
-<a name="party-kanade-kebab-v1-GetUserResponse"></a>
+<a name="kebab-v1-GetUserResponse"></a>
 
 ### GetUserResponse
 
@@ -81,14 +81,14 @@ GetUserRequest は users/{user_id} 形式で User を取得する。
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| user | [User](#party-kanade-kebab-v1-User) |  |  |
+| user | [User](#kebab-v1-User) |  |  |
 
 
 
 
 
 
-<a name="party-kanade-kebab-v1-RefreshSessionRequest"></a>
+<a name="kebab-v1-RefreshSessionRequest"></a>
 
 ### RefreshSessionRequest
 RefreshSessionRequest は access token 期限切れ時の token 再発行（reissue）に利用する。
@@ -104,7 +104,7 @@ RefreshSessionRequest は access token 期限切れ時の token 再発行（reis
 
 
 
-<a name="party-kanade-kebab-v1-RefreshSessionResponse"></a>
+<a name="kebab-v1-RefreshSessionResponse"></a>
 
 ### RefreshSessionResponse
 
@@ -128,15 +128,15 @@ RefreshSessionRequest は access token 期限切れ時の token 再発行（reis
  
 
 
-<a name="party-kanade-kebab-v1-PublicAuthenticationService"></a>
+<a name="kebab-v1-PublicAuthenticationService"></a>
 
 ### PublicAuthenticationService
-PublicAuthenticationService は他サービス向けの最小認証 contract。
+PublicAuthenticationService は公開認証 API。
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| GetUser | [GetUserRequest](#party-kanade-kebab-v1-GetUserRequest) | [GetUserResponse](#party-kanade-kebab-v1-GetUserResponse) |  |
-| RefreshSession | [RefreshSessionRequest](#party-kanade-kebab-v1-RefreshSessionRequest) | [RefreshSessionResponse](#party-kanade-kebab-v1-RefreshSessionResponse) |  |
+| GetUser | [GetUserRequest](#kebab-v1-GetUserRequest) | [GetUserResponse](#kebab-v1-GetUserResponse) |  |
+| RefreshSession | [RefreshSessionRequest](#kebab-v1-RefreshSessionRequest) | [RefreshSessionResponse](#kebab-v1-RefreshSessionResponse) |  |
 
  
 

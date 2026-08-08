@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package party.kanade.kebab.v1;
+package kebab.v1;
 
 // User は公開 User 表現。
 message User {

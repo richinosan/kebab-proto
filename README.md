@@ -5,7 +5,7 @@ Kebab の public API contract を管理する repository です。
 ## Package
 
 ```text
-party.kanade.kebab.v1
+kebab.v1
 ```
 
 ## Resources

@@ -59,6 +59,7 @@ User は User リソースの公開表現。
 | id | [string](#string) |  |  |
 | display_name | [string](#string) |  |  |
 | image_url | [string](#string) |  |  |
+| username | [string](#string) |  | username はユーザー自身が指定する一意な識別子。id と異なり、 ユーザーが設定・変更できる。未設定の場合は空文字列を返す。 |
 
 
 
@@ -85,6 +86,8 @@ User は User リソースの公開表現。
 
 ### GetUserRequest
 GetUserRequest は users/{user_id} 形式で User を取得する。
+{user_id} には内部 id または username（User.username、ユーザー自身が
+指定する識別子）のいずれかを指定できる。
 
 
 | Field | Type | Label | Description |

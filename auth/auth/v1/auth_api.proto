@@ -5,6 +5,8 @@ package auth.v1;
 import "auth/v1/user.proto";
 
 // GetUserRequest は users/{user_id} 形式で User を取得する。
+// {user_id} には内部 id または username（User.username、ユーザー自身が
+// 指定する識別子）のいずれかを指定できる。
 message GetUserRequest {
   string name = 1;
 }

@@ -18,6 +18,11 @@ auth/
   auth/v1/*.proto
 ```
 
+## サービス統合
+
+kebab を利用してサインインするサービスは、標準の OAuth 2.0 Authorization Code + PKCE フローで
+統合してください。手順は [INTEGRATION.md](./INTEGRATION.md) を参照してください。
+
 ## ドキュメント
 
 `auth/README.md` を `mise run docs` で生成します。

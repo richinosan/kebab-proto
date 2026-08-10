@@ -1,5 +1,14 @@
 version: v2
+clean: false
+managed:
+  enabled: true
 plugins:
   - local: protoc-gen-doc
     out: .
     opt: markdown,README.md
+  - local: protoc-gen-es
+    out: gen/es
+    opt:
+      - target=ts
+      - import_extension=js
+    include_imports: true

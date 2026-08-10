@@ -15,6 +15,36 @@ message GetUserResponse {
   User user = 1;
 }
 
+// GetMeRequest は access_token の主体(呼び出し元自身)の User を取得する。
+//
+// GetUser(users/{id_or_username}) と異なり、呼び出し元が自分自身の id /
+// username を事前に知らなくても、Authorization ヘッダの access_token だけで
+// 自分の User を取得できる。未認証(access_token が不正・期限切れ・失効済み)
+// の場合は Unauthenticated を返す。
+message GetMeRequest {}
+
+message GetMeResponse {
+  User user = 1;
+}
+
+// ValidateTokenRequest は access_token の有効性を検証する。
+//
+// access_token は kebab の JWKS で署名検証できるため、通常はサービス側で
+// 直接検証すれば十分だが、JWT の署名検証だけでは RevokeSession による
+// 失効を即座には検知できない。ValidateToken は失効チェックを含めた
+// 検証結果を返す、署名検証を代替しないセカンダリの検証手段。
+message ValidateTokenRequest {
+  // 検証対象の access_token(id_token / refresh_token は対象外)。
+  string access_token = 1;
+}
+
+message ValidateTokenResponse {
+  // access_token が有効(署名・期限が正しく、かつ失効していない)なら true。
+  bool valid = 1;
+  // valid が true の場合の、トークンの主体(User.id)。
+  string user_id = 2;
+}
+
 // RefreshSessionRequest は Refresh Token を更新する。
 message RefreshSessionRequest {
   string refresh_token = 1;

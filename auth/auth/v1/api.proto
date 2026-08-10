@@ -7,6 +7,8 @@ import "auth/v1/auth_api.proto";
 // AuthenticationService は認証 API を提供する。
 service AuthenticationService {
   rpc GetUser(GetUserRequest) returns (GetUserResponse);
+  rpc GetMe(GetMeRequest) returns (GetMeResponse);
+  rpc ValidateToken(ValidateTokenRequest) returns (ValidateTokenResponse);
   rpc RefreshSession(RefreshSessionRequest) returns (RefreshSessionResponse);
   rpc RevokeSession(RevokeSessionRequest) returns (RevokeSessionResponse);
 }

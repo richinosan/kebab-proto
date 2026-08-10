@@ -1,16 +1,17 @@
 [tools]
 buf = "1.72.0"
 "go:github.com/pseudomuto/protoc-gen-doc/cmd/protoc-gen-doc" = "1.5.1"
+"npm:@bufbuild/protoc-gen-es" = "2.12.1"
 
 [env]
 services = "auth"
 
 [tasks.docs]
-description = "ドキュメントを生成する"
+description = "ドキュメントを生成する(TypeScript の生成物も buf generate に含まれる)"
 run = ["for service in ${services}; do ( cd $service && buf generate ); done"]
 
 [tasks.generate]
-description = "docs のエイリアス"
+description = "docs のエイリアス(TypeScript の生成物も含む)"
 run = ["mise run docs"]
 
 [tasks.lint]

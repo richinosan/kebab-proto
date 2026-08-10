@@ -8,12 +8,16 @@
     - [User](#auth-v1-User)
   
 - [auth/v1/auth_api.proto](#auth_v1_auth_api-proto)
+    - [GetMeRequest](#auth-v1-GetMeRequest)
+    - [GetMeResponse](#auth-v1-GetMeResponse)
     - [GetUserRequest](#auth-v1-GetUserRequest)
     - [GetUserResponse](#auth-v1-GetUserResponse)
     - [RefreshSessionRequest](#auth-v1-RefreshSessionRequest)
     - [RefreshSessionResponse](#auth-v1-RefreshSessionResponse)
     - [RevokeSessionRequest](#auth-v1-RevokeSessionRequest)
     - [RevokeSessionResponse](#auth-v1-RevokeSessionResponse)
+    - [ValidateTokenRequest](#auth-v1-ValidateTokenRequest)
+    - [ValidateTokenResponse](#auth-v1-ValidateTokenResponse)
   
 - [auth/v1/api.proto](#auth_v1_api-proto)
     - [AuthenticationService](#auth-v1-AuthenticationService)
@@ -79,6 +83,36 @@ User は User リソースの公開表現。
 <p align="right"><a href="#top">Top</a></p>
 
 ## auth/v1/auth_api.proto
+
+
+
+<a name="auth-v1-GetMeRequest"></a>
+
+### GetMeRequest
+GetMeRequest は access_token の主体(呼び出し元自身)の User を取得する。
+
+GetUser(users/{id_or_username}) と異なり、呼び出し元が自分自身の id /
+username を事前に知らなくても、Authorization ヘッダの access_token だけで
+自分の User を取得できる。未認証(access_token が不正・期限切れ・失効済み)
+の場合は Unauthenticated を返す。
+
+
+
+
+
+
+<a name="auth-v1-GetMeResponse"></a>
+
+### GetMeResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| user | [User](#auth-v1-User) |  |  |
+
+
+
 
 
 
@@ -169,6 +203,42 @@ RevokeSessionRequest はセッションを失効する。
 
 
 
+
+<a name="auth-v1-ValidateTokenRequest"></a>
+
+### ValidateTokenRequest
+ValidateTokenRequest は access_token の有効性を検証する。
+
+access_token は kebab の JWKS で署名検証できるため、通常はサービス側で
+直接検証すれば十分だが、JWT の署名検証だけでは RevokeSession による
+失効を即座には検知できない。ValidateToken は失効チェックを含めた
+検証結果を返す、署名検証を代替しないセカンダリの検証手段。
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| access_token | [string](#string) |  | 検証対象の access_token(id_token / refresh_token は対象外)。 |
+
+
+
+
+
+
+<a name="auth-v1-ValidateTokenResponse"></a>
+
+### ValidateTokenResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| valid | [bool](#bool) |  | access_token が有効(署名・期限が正しく、かつ失効していない)なら true。 |
+| user_id | [string](#string) |  | valid が true の場合の、トークンの主体(User.id)。 |
+
+
+
+
+
  
 
  
@@ -200,6 +270,8 @@ AuthenticationService は認証 API を提供する。
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
 | GetUser | [GetUserRequest](#auth-v1-GetUserRequest) | [GetUserResponse](#auth-v1-GetUserResponse) |  |
+| GetMe | [GetMeRequest](#auth-v1-GetMeRequest) | [GetMeResponse](#auth-v1-GetMeResponse) |  |
+| ValidateToken | [ValidateTokenRequest](#auth-v1-ValidateTokenRequest) | [ValidateTokenResponse](#auth-v1-ValidateTokenResponse) |  |
 | RefreshSession | [RefreshSessionRequest](#auth-v1-RefreshSessionRequest) | [RefreshSessionResponse](#auth-v1-RefreshSessionResponse) |  |
 | RevokeSession | [RevokeSessionRequest](#auth-v1-RevokeSessionRequest) | [RevokeSessionResponse](#auth-v1-RevokeSessionResponse) |  |
 

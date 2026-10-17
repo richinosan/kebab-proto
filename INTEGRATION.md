@@ -1,6 +1,6 @@
 # kebab へのサービス統合ガイド
 
-kebab は標準的な OAuth 2.0 Authorization Code フロー(PKCE 必須)を提供する認証基盤です。
+kebab は OAuth 2.0 Authorization Code フロー(PKCE 必須、OAuth 2.1 相当の制約)と OpenID Connect Core 1.0 を提供する認証基盤です。
 kebab を利用してサインインするすべてのサービス(kebab 自身の first-party フロントエンドを含む)は、
 このガイドに沿って**自分専用の `client_id` を登録し、標準フローで統合してください**。
 
@@ -45,14 +45,25 @@ kebab 側の `oauth_clients` / `oauth_client_redirect_uris` テーブルに、�
 
 ```text
 GET {KEBAB_ISSUER}/authorize
-  ?client_id={your_client_id}
+  ?response_type=code
+  &client_id={your_client_id}
   &redirect_uri={your_redirect_uri}      // 登録済みの redirect_uri と完全一致させる
   &state={state}
   &code_challenge={code_challenge}
   &code_challenge_method=S256
+  &scope=openid                          // id_token が必要な場合は openid を含める(email / profile も指定可)
   &nonce={optional}
-  &scope={optional}
+  &prompt={optional}                     // none / login / consent / select_account
+  &max_age={optional}                    // 秒。超えていれば再認証を求める
 ```
+
+- `scope` に `openid` を含めた場合のみ `/token` が `id_token` を返します。
+- `prompt=none` でサインイン済みセッションが無い(または `max_age` を満たさない)場合、
+  画面を出さずに `redirect_uri?error=login_required&state=...` へ戻ります。
+- `prompt=login` や `max_age` を超えたセッションでは、サインイン画面で再認証を求めます。
+- `redirect_uri` の検証後に起きたエラー(不正なパラメーターなど)は、
+  `redirect_uri?error=...&error_description=...&state=...` で返ります。コールバックでは
+  `error` を必ず確認し、PKCE の一時保存値を破棄してください(自動で `/authorize` に戻すとループします)。
 
 kebab のサインイン画面(Google / Passkey / メールリンク)を経て、認証に成功すると
 `redirect_uri` に `code` と `state` を付けてリダイレクトされます。
@@ -145,3 +156,18 @@ family(= 自サービスの session)のみが失効します。他サービス�
 - `code_verifier` / `state` は必ずサーバーサイドまたはページ遷移をまたげる形で一時保存し、検証する
 - refresh token はローテーションのたびに保存し直す。古いものは使い回さない
 - `invalid_grant` と `temporarily_unavailable` を区別し、後者では有効な token を破棄しない
+
+## トークンの署名と検証(RS256 / ML-DSA-65)
+
+kebab はクライアントごとに `RS256` または耐量子署名の `ML-DSA-65`(draft-ietf-cose-dilithium の
+JOSE 表現、JWKS では `kty: "AKP"`)で access token / id_token に署名します。
+`/.well-known/jwks.json`(discovery の `jwks_uri`)は RSA 鍵だけを載せます(未知の `kty` を含む JWK Set を
+丸ごと拒否する OIDC ライブラリがあるため)。ML-DSA-65 の公開鍵は、`JWT_MLDSA_SEED` が設定されている場合に限り
+`/.well-known/jwks-pq.json`(RSA 鍵と AKP 鍵の両方を含む)で公開します。
+
+- 検証側は header の `alg` を `RS256` と `ML-DSA-65` だけに許可リストで絞ってください(`none` や `HS*` は拒否)。
+- Cloudflare Workers の WebCrypto には ML-DSA が無いため、`jose` では検証できません。
+  `/.well-known/jwks-pq.json` から鍵を取り、`@noble/post-quantum` の `ml_dsa65.verify` で `base64url(header).base64url(payload)` に対する署名を検証し、
+  `iss` / `exp` などのクレームは RS256 と同じ規則で確認します。実装例は pompe / vitrina / ebi の検証コードを参照してください。
+- 新しく統合するサービスの既定は `RS256` です。ML-DSA-65 への切り替えは kebab 管理者に依頼してください。
+

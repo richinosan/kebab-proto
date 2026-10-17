@@ -161,11 +161,13 @@ family(= 自サービスの session)のみが失効します。他サービス�
 
 kebab はクライアントごとに `RS256` または耐量子署名の `ML-DSA-65`(draft-ietf-cose-dilithium の
 JOSE 表現、JWKS では `kty: "AKP"`)で access token / id_token に署名します。
-JWKS(`/.well-known/jwks.json`)には両方の公開鍵が並びます。
+`/.well-known/jwks.json`(discovery の `jwks_uri`)は RSA 鍵だけを載せます(未知の `kty` を含む JWK Set を
+丸ごと拒否する OIDC ライブラリがあるため)。ML-DSA-65 の公開鍵は、`JWT_MLDSA_SEED` が設定されている場合に限り
+`/.well-known/jwks-pq.json`(RSA 鍵と AKP 鍵の両方を含む)で公開します。
 
 - 検証側は header の `alg` を `RS256` と `ML-DSA-65` だけに許可リストで絞ってください(`none` や `HS*` は拒否)。
 - Cloudflare Workers の WebCrypto には ML-DSA が無いため、`jose` では検証できません。
-  `@noble/post-quantum` の `ml_dsa65.verify` で `base64url(header).base64url(payload)` に対する署名を検証し、
+  `/.well-known/jwks-pq.json` から鍵を取り、`@noble/post-quantum` の `ml_dsa65.verify` で `base64url(header).base64url(payload)` に対する署名を検証し、
   `iss` / `exp` などのクレームは RS256 と同じ規則で確認します。実装例は pompe / vitrina / ebi の検証コードを参照してください。
 - 新しく統合するサービスの既定は `RS256` です。ML-DSA-65 への切り替えは kebab 管理者に依頼してください。
 

@@ -1,2 +1,7 @@
 tmp
 mise.local.toml
+
+.env
+.env.*
+.env*.local
+.envrc.local
